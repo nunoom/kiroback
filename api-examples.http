@@ -1,0 +1,134 @@
+### Variáveis
+@baseUrl = http://localhost:3000
+@token = seu_token_aqui
+
+### Registrar usuário
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "cliente@example.com",
+  "password": "senha123",
+  "name": "João Silva",
+  "phone": "11999999999",
+  "role": "CUSTOMER"
+}
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "cliente@example.com",
+  "password": "senha123"
+}
+
+### Registrar vendedor
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "vendedor@example.com",
+  "password": "senha123",
+  "name": "Maria Vendedora",
+  "role": "SELLER"
+}
+
+### Perfil do usuário
+GET {{baseUrl}}/users/me
+Authorization: Bearer {{token}}
+
+### Criar perfil de vendedor
+POST {{baseUrl}}/sellers
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "storeName": "Loja do João",
+  "description": "Produtos de qualidade",
+  "commission": 15.0
+}
+
+### Listar vendedores
+GET {{baseUrl}}/sellers
+
+### Criar categoria
+POST {{baseUrl}}/categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Eletrônicos",
+  "description": "Produtos eletrônicos",
+  "slug": "eletronicos"
+}
+
+### Listar categorias
+GET {{baseUrl}}/categories
+
+### Criar produto
+POST {{baseUrl}}/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Smartphone XYZ",
+  "description": "Smartphone de última geração",
+  "price": 1999.99,
+  "stock": 50,
+  "sku": "PHONE-XYZ-001",
+  "images": ["https://example.com/image1.jpg", "https://example.com/image2.jpg"],
+  "isActive": true,
+  "sellerId": "id_do_vendedor",
+  "categoryId": "id_da_categoria"
+}
+
+### Listar produtos
+GET {{baseUrl}}/products
+
+### Buscar produto por ID
+GET {{baseUrl}}/products/id_do_produto
+
+### Adicionar item ao carrinho
+POST {{baseUrl}}/cart/items
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "productId": "id_do_produto",
+  "quantity": 2
+}
+
+### Ver carrinho
+GET {{baseUrl}}/cart
+Authorization: Bearer {{token}}
+
+### Remover item do carrinho
+DELETE {{baseUrl}}/cart/items/id_do_produto
+Authorization: Bearer {{token}}
+
+### Criar pedido
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "addressId": "id_do_endereco"
+}
+
+### Listar pedidos
+GET {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+
+### Buscar pedido por ID
+GET {{baseUrl}}/orders/id_do_pedido
+Authorization: Bearer {{token}}
+
+### Atualizar status do pedido
+PUT {{baseUrl}}/orders/id_do_pedido/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "PROCESSING"
+}
