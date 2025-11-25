@@ -12,8 +12,14 @@ Este é um **backend completo** para uma aplicação de **Dropshipping/E-commerc
 # 1. Instalar dependências
 npm install
 
-# 2. Subir banco de dados
+# 2. Configurar banco de dados
+# Opção A: Docker (local)
 docker-compose up -d
+
+# Opção B: Neon DB (cloud) - Veja QUICK_NEON.md
+# 1. Crie conta em https://neon.tech
+# 2. Copie a connection string
+# 3. Cole no .env
 
 # 3. Configurar banco
 npm run prisma:migrate

@@ -5,12 +5,15 @@
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/main",
+    "start": "node dist/main.js",
     "start:dev": "ts-node src/main.ts",
+    "start:prod": "node dist/main.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:studio": "prisma studio",
-    "prisma:seed": "ts-node prisma/seed.ts"
+    "prisma:seed": "ts-node prisma/seed.ts",
+    "render-build": "bash render-build.sh"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

@@ -32,12 +32,22 @@ API completa para aplicação de Dropshipping com autenticação JWT, gerenciame
 npm install
 ```
 
-3. Inicie o PostgreSQL com Docker (ou use sua instalação local):
+3. Configure o banco de dados:
+
+**Opção A: Docker (Local)**
 ```bash
 docker-compose up -d
 ```
 
-4. Configure o arquivo `.env` (já está configurado para o Docker):
+**Opção B: Neon DB (Cloud - Recomendado para produção)**
+1. Crie conta em https://neon.tech
+2. Crie um projeto
+3. Copie a connection string
+4. Cole no `.env`
+
+Veja o guia completo em **[NEON_SETUP.md](NEON_SETUP.md)**
+
+4. Configure o arquivo `.env`:
 ```env
 DATABASE_URL="postgresql://usuario:senha@localhost:5432/dropshipping_db?schema=public"
 JWT_SECRET="seu_jwt_secret_aqui_mude_em_producao"
