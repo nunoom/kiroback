@@ -116,10 +116,10 @@ Abra no navegador: `http://localhost:3000/api`
     "https://exemplo.com/img2.jpg"
   ],
   "isActive": true,
-  "sellerId": "clm1234567890abcdef",
   "categoryId": "clm0987654321fedcba"
 }
 ```
+**Nota:** O campo `sellerId` é opcional. Se não fornecido, usa o seller do usuário autenticado.
 
 ### Exemplo: Login
 ```json

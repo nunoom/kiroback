@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, Query, UseGuards, Request } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -46,7 +46,7 @@ export class ProductsController {
   @ApiBearerAuth()
   @ApiOperation({ 
     summary: 'Criar novo produto',
-    description: 'Cria um novo produto no catálogo. Requer autenticação de vendedor.',
+    description: 'Cria um novo produto no catálogo. Requer autenticação de vendedor. Se sellerId não for fornecido, usa o seller do usuário autenticado.',
   })
   @ApiResponse({ 
     status: 201, 
@@ -54,9 +54,10 @@ export class ProductsController {
     type: ProductResponseDto,
   })
   @ApiResponse({ status: 401, description: 'Não autorizado' })
-  @ApiResponse({ status: 400, description: 'Dados inválidos' })
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productsService.create(createProductDto);
+  @ApiResponse({ status: 400, description: 'Dados inválidos ou usuário não é vendedor' })
+  @ApiResponse({ status: 404, description: 'Vendedor ou categoria não encontrados' })
+  create(@Request() req, @Body() createProductDto: CreateProductDto) {
+    return this.productsService.create(req.user.userId, createProductDto);
   }
 
   @Put(':id')

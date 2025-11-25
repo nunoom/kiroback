@@ -59,12 +59,13 @@ export class CreateProductDto {
   @IsBoolean()
   isActive?: boolean;
 
-  @ApiProperty({
-    description: 'ID do vendedor',
+  @ApiPropertyOptional({
+    description: 'ID do vendedor (opcional - usa o seller do usuário autenticado se não fornecido)',
     example: 'clm1234567890abcdef',
   })
+  @IsOptional()
   @IsString()
-  sellerId: string;
+  sellerId?: string;
 
   @ApiProperty({
     description: 'ID da categoria',
